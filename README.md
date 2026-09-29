@@ -1,3 +1,5 @@
+<img width="777" height="419" alt="image" src="https://github.com/user-attachments/assets/40438390-a96a-4121-b87d-d6d7dae1600c" />
+
 # AI Solution Architect — Agentic Architecture Workshop
 
 A local-first AI architecture workshop that transforms a customer problem statement into a structured solution proposal covering application architecture, security, SRE, implementation planning, cost analysis, and stakeholder communication.
