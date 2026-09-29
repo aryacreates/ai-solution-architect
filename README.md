@@ -70,15 +70,15 @@ Architecture Proposal
 Executive / Stakeholder Summary
 ```
 
-### 1. Requirements Discovery
+### Requirements Discovery
 
 The workflow starts by identifying the customer problem, requirements, constraints, assumptions, and relevant architectural considerations.
 
-### 2. Architecture Design
+### Architecture Design
 
 The architecture stage converts the discovered requirements into a structured solution proposal covering application components, integrations, data flow, and system boundaries.
 
-### 3. Security Review
+### Security Review
 
 The security stage considers areas such as:
 
@@ -89,7 +89,7 @@ The security stage considers areas such as:
 * Sensitive-data handling
 * Security constraints
 
-### 4. SRE Review
+### SRE Review
 
 The SRE stage focuses on operational considerations such as:
 
@@ -100,17 +100,17 @@ The SRE stage focuses on operational considerations such as:
 * Failure handling
 * Operational requirements
 
-### 5. Cost Model
+### Cost Model
 
-Cost calculations are handled through deterministic tooling rather than asking the LLM to invent numerical estimates.
+Cost calculations are handled through deterministic tooling rather than asking the LLM to generate numerical estimates.
 
 This provides a more reproducible approach for scenario-based architecture discussions.
 
-### 6. Architecture Decision Records
+### Architecture Decision Records
 
-Important architectural decisions are captured as ADR-style outputs so that trade-offs and assumptions remain visible to technical stakeholders.
+Important architectural decisions are captured as ADR-style outputs so that decisions, assumptions, and trade-offs remain visible to technical stakeholders.
 
-### 7. Executive Summary
+### Executive Summary
 
 The final stage converts the technical analysis into a concise stakeholder-oriented summary suitable for architecture discussions and presentations.
 
@@ -127,7 +127,7 @@ A customer-facing AI engineering workflow needs to translate ambiguous requireme
 * Operational requirements
 * Cost considerations
 * Implementation priorities
-* Stakeholder-facing recommendations
+* Stakeholder-facing communication
 
 This project makes those steps explicit through a structured agent workflow.
 
@@ -154,13 +154,13 @@ python -m venv .venv
 
 ### 2. Activate the environment
 
-Windows:
+**Windows:**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Linux/macOS:
+**Linux/macOS:**
 
 ```bash
 source .venv/bin/activate
@@ -176,19 +176,19 @@ pip install -r requirements.txt
 
 Mock mode allows the application to run without an external LLM service.
 
-Windows Command Prompt:
+**Windows Command Prompt:**
 
 ```bash
 set LLM_MODE=mock
 ```
 
-PowerShell:
+**PowerShell:**
 
 ```powershell
 $env:LLM_MODE="mock"
 ```
 
-Linux/macOS:
+**Linux/macOS:**
 
 ```bash
 export LLM_MODE=mock
@@ -242,7 +242,7 @@ Run the automated test suite:
 python -m pytest -q
 ```
 
-The test suite is intended to verify core application behavior and provide reproducible validation during development.
+The test suite provides reproducible validation of core application behavior.
 
 ## Evaluation
 
@@ -287,9 +287,9 @@ Key engineering concerns include:
 * Stakeholder communication
 * Reproducible local execution
 
-## Project Limitations
+## Project Scope and Limitations
 
-This is a portfolio project designed to demonstrate architecture and AI-engineering patterns.
+This is a portfolio project designed to demonstrate AI engineering and solution-architecture patterns.
 
 It does not claim:
 
@@ -298,9 +298,9 @@ It does not claim:
 * Production-grade security certification
 * Real customer data
 * Production cost estimates
-* Enterprise SLA guarantees
+* Production SLA guarantees
 
-Cloud deployment and production hardening would require additional infrastructure, security controls, observability, identity management, testing, and governance.
+A production deployment would require additional infrastructure, identity and access management, security controls, observability, testing, governance, and operational processes.
 
 ## Future Improvements
 
@@ -314,42 +314,3 @@ Cloud deployment and production hardening would require additional infrastructur
 * Add automated architecture validation rules
 * Add architecture comparison and versioning
 * Add evaluation datasets for different customer scenarios
-
-## Screenshots
-
-Recommended repository screenshots:
-
-```text
-docs/images/workshop.png
-docs/images/architecture.png
-docs/images/security-sre.png
-```
-
-Suggested screenshots should demonstrate:
-
-* Main architecture workshop interface
-* Generated architecture proposal
-* Security and SRE analysis
-
-## Repository Structure
-
-A typical project structure is:
-
-```text
-ai-solution-architect/
-├── app/
-│   ├── ...
-├── tests/
-│   ├── ...
-├── docs/
-│   └── images/
-├── requirements.txt
-├── README.md
-└── ...
-```
-
-The exact structure may vary as the project evolves.
-
-## License
-
-Add a license appropriate for your intended use of the repository.
