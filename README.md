@@ -1,52 +1,145 @@
 # AI Solution Architect — Agentic Architecture Workshop
 
-A local-first architecture workshop that converts a customer problem statement into a structured proposal covering application architecture, security, SRE, implementation planning, cost analysis, and stakeholder communication.
+A local-first AI architecture workshop that transforms a customer problem statement into a structured solution proposal covering application architecture, security, SRE, implementation planning, cost analysis, and stakeholder communication.
 
-**Portfolio scope:** This project demonstrates agent orchestration and solution-design patterns. It does not claim deployment on proprietary cloud infrastructure.
+The project demonstrates how agentic AI workflows can support solution-architecture activities while keeping the workflow structured, inspectable, and reproducible.
+
+> **Portfolio scope:** This project demonstrates agent orchestration and solution-design patterns. It does not claim deployment on proprietary cloud infrastructure.
 
 ## What It Demonstrates
 
 * Multi-stage agent and workflow orchestration
-* Specialized architecture, security, SRE, and planning stages
-* Local document and tool use
-* Deterministic cost-model calculation
-* Structured outputs and validation
+* Requirements discovery and constraint extraction
+* Application architecture generation
+* Dedicated security and SRE analysis
 * Architecture Decision Records (ADRs)
-* Trust boundaries, data classification, and least-privilege concepts
-* Cloud-neutral architecture with a local/open-source execution path
-* Product-style architecture workshop UI
+* Trust boundaries and data-classification concepts
+* Least-privilege security reasoning
+* Deterministic cost-model calculations
+* Structured outputs and validation
+* Local document and tool usage
+* Local LLM inference through Ollama
+* Cloud-neutral architecture patterns
+* Mock mode for reproducible execution
+* Interactive architecture-workshop UI
 
 ## Architecture
 
 ```mermaid
 flowchart LR
     UI[Architecture Workshop UI] --> API[FastAPI]
+
     API --> DISC[Discovery / Planner]
     DISC --> ARCH[Architecture Agent]
+
     ARCH --> SEC[Security Review]
     ARCH --> SRE[SRE Review]
-    SEC --> SUM[Executive Summary]
-    SRE --> SUM
     ARCH --> COST[Cost Model Tool]
     ARCH --> ADR[Architecture Decision Records]
+
+    SEC --> SUM[Executive Summary]
+    SRE --> SUM
     COST --> SUM
+    ADR --> SUM
 ```
+
+The workflow separates major solution-design responsibilities instead of relying on a single unconstrained agent.
+
+This makes individual stages easier to inspect, test, evaluate, and improve.
+
+## Workflow
+
+```text
+Customer Problem
+       |
+       v
+Requirements Discovery
+       |
+       v
+Architecture Proposal
+       |
+       +---------> Security Review
+       |
+       +---------> SRE Review
+       |
+       +---------> Cost Model
+       |
+       +---------> Architecture Decision Records
+       |
+       v
+Executive / Stakeholder Summary
+```
+
+### 1. Requirements Discovery
+
+The workflow starts by identifying the customer problem, requirements, constraints, assumptions, and relevant architectural considerations.
+
+### 2. Architecture Design
+
+The architecture stage converts the discovered requirements into a structured solution proposal covering application components, integrations, data flow, and system boundaries.
+
+### 3. Security Review
+
+The security stage considers areas such as:
+
+* Trust boundaries
+* Data classification
+* Access control
+* Least privilege
+* Sensitive-data handling
+* Security constraints
+
+### 4. SRE Review
+
+The SRE stage focuses on operational considerations such as:
+
+* Reliability
+* Observability
+* Scalability
+* Availability
+* Failure handling
+* Operational requirements
+
+### 5. Cost Model
+
+Cost calculations are handled through deterministic tooling rather than asking the LLM to invent numerical estimates.
+
+This provides a more reproducible approach for scenario-based architecture discussions.
+
+### 6. Architecture Decision Records
+
+Important architectural decisions are captured as ADR-style outputs so that trade-offs and assumptions remain visible to technical stakeholders.
+
+### 7. Executive Summary
+
+The final stage converts the technical analysis into a concise stakeholder-oriented summary suitable for architecture discussions and presentations.
 
 ## Customer-Facing AI Engineering
 
-A strong AI engineering solution involves more than generating text. It requires translating ambiguous requirements into explicit assumptions, system boundaries, security constraints, operational requirements, and implementation plans.
+Solution architecture requires more than generating a technically plausible response.
 
-This project makes those steps visible through a structured architecture workflow.
+A customer-facing AI engineering workflow needs to translate ambiguous requirements into:
+
+* Explicit assumptions
+* Architectural constraints
+* System boundaries
+* Security requirements
+* Operational requirements
+* Cost considerations
+* Implementation priorities
+* Stakeholder-facing recommendations
+
+This project makes those steps explicit through a structured agent workflow.
 
 ## Tech Stack
 
 * Python
 * FastAPI
-* Agent/workflow orchestration
 * Pydantic
-* Local LLM support
+* Agent/workflow orchestration
+* Local LLM inference
 * Ollama
-* Deterministic cost-model tools
+* Deterministic cost-model tooling
 * Mermaid
 * HTML/CSS/JavaScript
 * Pytest
@@ -58,6 +151,8 @@ This project makes those steps visible through a structured architecture workflo
 ```bash
 python -m venv .venv
 ```
+
+### 2. Activate the environment
 
 Windows:
 
@@ -71,13 +166,15 @@ Linux/macOS:
 source .venv/bin/activate
 ```
 
-### 2. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Start in mock mode
+### 4. Start in mock mode
+
+Mock mode allows the application to run without an external LLM service.
 
 Windows Command Prompt:
 
@@ -97,62 +194,80 @@ Linux/macOS:
 export LLM_MODE=mock
 ```
 
-Start the application:
+### 5. Start the application
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Open:
+Open the application at:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-API documentation:
+FastAPI documentation:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Optional local inference can be enabled with Ollama and a compatible text model.
+## Optional Local LLM
+
+The project can optionally use Ollama for local model inference.
+
+This provides a local execution path without requiring a paid cloud AI API.
+
+The exact model configuration depends on the model available in the local Ollama installation.
+
+Mock mode remains available for reproducible development and testing.
 
 ## Demo Flow
 
-1. Enter a customer problem and constraints.
-2. Run the discovery stage.
-3. Review assumptions and the architecture proposal.
-4. Inspect security and SRE considerations.
-5. Review the deterministic cost-model output.
-6. Review the Architecture Decision Records.
-7. Generate the stakeholder summary.
+1. Enter a customer problem statement and constraints.
+2. Run the requirements-discovery stage.
+3. Review extracted assumptions and requirements.
+4. Generate the architecture proposal.
+5. Review security considerations.
+6. Review SRE and operational considerations.
+7. Inspect the deterministic cost-model output.
+8. Review Architecture Decision Records.
+9. Generate the stakeholder summary.
 
-## Evaluation
+## Testing
 
-Run the automated tests with:
+Run the automated test suite:
 
 ```bash
 python -m pytest -q
 ```
 
-Potential evaluation dimensions include:
+The test suite is intended to verify core application behavior and provide reproducible validation during development.
+
+## Evaluation
+
+The architecture workflow can be evaluated using dimensions such as:
 
 * Requirements coverage
-* Architecture constraint adherence
+* Constraint adherence
 * Security-control completeness
-* Contradiction rate between sections
+* Consistency between architecture sections
 * Cost-model consistency
+* Quality of generated ADRs
 * Stakeholder-summary usefulness
+
+These dimensions provide a foundation for future evaluation datasets and automated benchmarking.
 
 ## Design Trade-offs
 
 | Decision                          | Rationale                                                                               |
 | --------------------------------- | --------------------------------------------------------------------------------------- |
 | Explicit workflow stages          | Easier to inspect and evaluate than unconstrained agent loops                           |
+| Separate security and SRE reviews | Makes non-functional requirements explicit and reviewable                               |
 | Deterministic cost tool           | Reduces the risk of fabricated numerical reasoning                                      |
 | Cloud-neutral components          | Demonstrates transferable architecture knowledge without requiring a paid cloud account |
-| Mock mode                         | Enables reproducible demos and CI execution                                             |
-| Separate security and SRE reviews | Makes non-functional requirements explicit and reviewable                               |
+| Mock mode                         | Enables reproducible local demos and test execution                                     |
+| Structured outputs                | Makes generated architecture artifacts easier to validate and consume                   |
 
 ## Engineering Focus
 
@@ -162,29 +277,47 @@ Key engineering concerns include:
 
 * Requirements analysis
 * Architecture decomposition
+* Agent workflow design
 * Security and trust boundaries
 * Least-privilege design
 * Reliability and observability
 * Cost estimation
 * Architecture decision tracking
-* Stakeholder communication
 * Structured AI outputs
+* Stakeholder communication
 * Reproducible local execution
+
+## Project Limitations
+
+This is a portfolio project designed to demonstrate architecture and AI-engineering patterns.
+
+It does not claim:
+
+* Production deployment
+* Proprietary cloud infrastructure
+* Production-grade security certification
+* Real customer data
+* Production cost estimates
+* Enterprise SLA guarantees
+
+Cloud deployment and production hardening would require additional infrastructure, security controls, observability, identity management, testing, and governance.
 
 ## Future Improvements
 
 * Add architecture evaluation benchmarks
 * Add OpenTelemetry tracing
-* Add persistent project/workshop history
+* Add persistent workshop/project history
 * Add vector search for architecture references
 * Add cloud-specific architecture adapters
 * Add infrastructure-as-code generation
 * Add human approval checkpoints
 * Add automated architecture validation rules
+* Add architecture comparison and versioning
+* Add evaluation datasets for different customer scenarios
 
 ## Screenshots
 
-Recommended screenshots for the repository:
+Recommended repository screenshots:
 
 ```text
 docs/images/workshop.png
@@ -192,4 +325,31 @@ docs/images/architecture.png
 docs/images/security-sre.png
 ```
 
-These can demonstrate the main workshop UI, generated architecture, and security/SRE analysis.
+Suggested screenshots should demonstrate:
+
+* Main architecture workshop interface
+* Generated architecture proposal
+* Security and SRE analysis
+
+## Repository Structure
+
+A typical project structure is:
+
+```text
+ai-solution-architect/
+├── app/
+│   ├── ...
+├── tests/
+│   ├── ...
+├── docs/
+│   └── images/
+├── requirements.txt
+├── README.md
+└── ...
+```
+
+The exact structure may vary as the project evolves.
+
+## License
+
+Add a license appropriate for your intended use of the repository.
