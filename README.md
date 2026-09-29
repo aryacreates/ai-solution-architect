@@ -1,20 +1,20 @@
 # AI Solution Architect — Agentic Architecture Workshop
 
-A local-first architecture workshop that converts a customer problem statement into a structured proposal covering application architecture, security, SRE, implementation planning and stakeholder communication.
+A local-first architecture workshop that converts a customer problem statement into a structured proposal covering application architecture, security, SRE, implementation planning, cost analysis, and stakeholder communication.
 
-**Portfolio scope:** this demonstrates agent orchestration and solution-design patterns; it does not claim deployment on proprietary cloud infrastructure.
+**Portfolio scope:** This project demonstrates agent orchestration and solution-design patterns. It does not claim deployment on proprietary cloud infrastructure.
 
-## What it demonstrates
+## What It Demonstrates
 
-- Multi-stage agent/workflow orchestration
-- Specialized planning, architecture, security, SRE and executive-summary stages
-- Local document/tool use
-- Deterministic cost-model calculation
-- Structured outputs and validation
-- Architecture decision records (ADRs)
-- Threat-model concepts: trust boundaries, data classification and least privilege
-- Cloud-neutral architecture with a local/open-source execution path
-- Product-style architecture workshop UI
+* Multi-stage agent and workflow orchestration
+* Specialized architecture, security, SRE, and planning stages
+* Local document and tool use
+* Deterministic cost-model calculation
+* Structured outputs and validation
+* Architecture Decision Records (ADRs)
+* Trust boundaries, data classification, and least-privilege concepts
+* Cloud-neutral architecture with a local/open-source execution path
+* Product-style architecture workshop UI
 
 ## Architecture
 
@@ -32,79 +32,164 @@ flowchart LR
     COST --> SUM
 ```
 
-## Why this is relevant to customer-facing AI engineering
+## Customer-Facing AI Engineering
 
-A strong AI engineer is not only a prompt writer. They need to turn ambiguous requirements into explicit assumptions, system boundaries, security constraints, operational requirements and an implementation plan. This project makes those steps visible.
+A strong AI engineering solution involves more than generating text. It requires translating ambiguous requirements into explicit assumptions, system boundaries, security constraints, operational requirements, and implementation plans.
 
-## Run locally
+This project makes those steps visible through a structured architecture workflow.
+
+## Tech Stack
+
+* Python
+* FastAPI
+* Agent/workflow orchestration
+* Pydantic
+* Local LLM support
+* Ollama
+* Deterministic cost-model tools
+* Mermaid
+* HTML/CSS/JavaScript
+* Pytest
+
+## Running Locally
+
+### 1. Create a virtual environment
 
 ```bash
 python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# Linux/macOS: source .venv/bin/activate
+```
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+### 3. Start in mock mode
+
+Windows Command Prompt:
+
+```bash
 set LLM_MODE=mock
-# PowerShell: $env:LLM_MODE="mock"
-# Linux/macOS: export LLM_MODE=mock
+```
+
+PowerShell:
+
+```powershell
+$env:LLM_MODE="mock"
+```
+
+Linux/macOS:
+
+```bash
+export LLM_MODE=mock
+```
+
+Start the application:
+
+```bash
 uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000` and `/docs` for OpenAPI documentation.
+Open:
 
-Optional local inference can use Ollama with a compatible text model.
+```text
+http://127.0.0.1:8000
+```
 
-## Demo flow
+API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Optional local inference can be enabled with Ollama and a compatible text model.
+
+## Demo Flow
 
 1. Enter a customer problem and constraints.
-2. Run discovery.
-3. Review assumptions and architecture proposal.
+2. Run the discovery stage.
+3. Review assumptions and the architecture proposal.
 4. Inspect security and SRE considerations.
 5. Review the deterministic cost-model output.
-6. Use the stakeholder summary as the presentation artifact.
+6. Review the Architecture Decision Records.
+7. Generate the stakeholder summary.
 
-## Evaluation / tests
+## Evaluation
+
+Run the automated tests with:
 
 ```bash
 python -m pytest -q
 ```
 
-Useful future evaluation dimensions:
+Potential evaluation dimensions include:
 
-- requirements coverage
-- architecture constraint adherence
-- security-control completeness
-- contradiction rate between sections
-- cost-model consistency
-- stakeholder-summary usefulness
+* Requirements coverage
+* Architecture constraint adherence
+* Security-control completeness
+* Contradiction rate between sections
+* Cost-model consistency
+* Stakeholder-summary usefulness
 
-## Design trade-offs
+## Design Trade-offs
 
-| Decision | Why |
-|---|---|
-| Explicit workflow stages | Easier to inspect and evaluate than unconstrained agent loops |
-| Deterministic cost tool | Avoids fabricated numerical reasoning |
-| Cloud-neutral components | Demonstrates transferable architecture knowledge without requiring a paid cloud account |
-| Mock mode | Reproducible demos and CI |
+| Decision                          | Rationale                                                                               |
+| --------------------------------- | --------------------------------------------------------------------------------------- |
+| Explicit workflow stages          | Easier to inspect and evaluate than unconstrained agent loops                           |
+| Deterministic cost tool           | Reduces the risk of fabricated numerical reasoning                                      |
+| Cloud-neutral components          | Demonstrates transferable architecture knowledge without requiring a paid cloud account |
+| Mock mode                         | Enables reproducible demos and CI execution                                             |
+| Separate security and SRE reviews | Makes non-functional requirements explicit and reviewable                               |
 
-## Resume bullets
+## Engineering Focus
 
-- Built an **agentic solution-architecture workflow** that converts customer requirements into architecture, security, SRE, cost and executive-summary artifacts using FastAPI and structured agent stages.
-- Implemented **explicit trust boundaries, least-privilege reasoning and architecture decision records** to make AI-generated solution designs reviewable by technical stakeholders.
-- Added deterministic tools, automated tests, local model support and a responsive architecture-workshop UI for reproducible customer-scenario demonstrations.
+The project focuses on solution architecture rather than simply generating an AI response.
 
-## Interview questions to prepare
+Key engineering concerns include:
 
-- How do you turn ambiguous customer requirements into testable architecture constraints?
-- Why separate security and SRE review from the main architecture stage?
-- How would you prevent an LLM from inventing cost figures?
-- What would you move to managed cloud services in production?
-- How would you validate an AI-generated architecture before presenting it to a customer?
-- How would you measure adoption and business value after deployment?
+* Requirements analysis
+* Architecture decomposition
+* Security and trust boundaries
+* Least-privilege design
+* Reliability and observability
+* Cost estimation
+* Architecture decision tracking
+* Stakeholder communication
+* Structured AI outputs
+* Reproducible local execution
 
-## Screenshot checklist for GitHub
+## Future Improvements
 
-Add after running locally:
+* Add architecture evaluation benchmarks
+* Add OpenTelemetry tracing
+* Add persistent project/workshop history
+* Add vector search for architecture references
+* Add cloud-specific architecture adapters
+* Add infrastructure-as-code generation
+* Add human approval checkpoints
+* Add automated architecture validation rules
 
-- `docs/images/workshop.png`
-- `docs/images/architecture.png`
-- `docs/images/security-sre.png`
+## Screenshots
+
+Recommended screenshots for the repository:
+
+```text
+docs/images/workshop.png
+docs/images/architecture.png
+docs/images/security-sre.png
+```
+
+These can demonstrate the main workshop UI, generated architecture, and security/SRE analysis.
